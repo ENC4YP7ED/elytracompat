@@ -22,7 +22,7 @@ project_data() {
 import json, sys, pathlib
 body = pathlib.Path("$DIR/docs/modrinth-description.md").read_text()
 print(json.dumps({
-  "slug": "elytra-compat",
+  "slug": "elytracompat",
   "title": "Elytra Compat (Armored Elytra × Elytra Trims × Enderite)",
   "description": sys.argv[1],
   "body": body,
@@ -33,8 +33,8 @@ print(json.dumps({
   "license_id": "MIT",
   "is_draft": True,
   "initial_versions": [],
-  "source_url": "https://github.com/ENC4YP7ED/elytra-compat",
-  "issues_url": "https://github.com/ENC4YP7ED/elytra-compat/issues"
+  "source_url": "https://github.com/ENC4YP7ED/elytracompat",
+  "issues_url": "https://github.com/ENC4YP7ED/elytracompat/issues"
 }))
 PY
 }

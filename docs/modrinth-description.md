@@ -27,6 +27,6 @@ Best of all, the icon is **regenerated live from your active textures**, so if a
 
 ## Open source
 
-Source, issues and full technical write-up: **https://github.com/ENC4YP7ED/elytra-compat** (MIT).
+Source, issues and full technical write-up: **https://github.com/ENC4YP7ED/elytracompat** (MIT).
 
 Huge thanks to the authors of the three mods this bridges.
