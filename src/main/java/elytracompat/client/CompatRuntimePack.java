@@ -31,7 +31,7 @@ public class CompatRuntimePack implements PackResources {
 	private static final byte[] MISSING = new byte[0];
 
 	public static final PackLocationInfo INFO = new PackLocationInfo(
-			"elytracompat-generated", Component.literal("Elytra Compat Generated"),
+			"elytracompat_generated", Component.literal("Elytra Compat Generated"),
 			PackSource.BUILT_IN, Optional.empty());
 
 	/**
