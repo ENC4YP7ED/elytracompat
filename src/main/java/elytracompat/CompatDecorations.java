@@ -47,7 +47,7 @@ public final class CompatDecorations {
 	 *
 	 * {@code chestplate} is the stored chestplate snapshot; decorations that
 	 * came from the chestplate itself (its trim, its leather dye) are only
-	 * copied when {@code includeChestplateDerived} is set — the renderer wants
+	 * copied when {@code includeChestplateDerived} is set - the renderer wants
 	 * them on the wings, but a grindstone split must leave them on the
 	 * chestplate instead of duplicating them onto the plain elytra.
 	 *

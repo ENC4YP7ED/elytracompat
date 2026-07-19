@@ -44,6 +44,6 @@ public class ElytraCompat implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Bridging Armored Elytra × Elytra Trims × Enderite Mod");
+		LOGGER.info("Bridging Armored Elytra + Elytra Trims + Enderite Mod");
 	}
 }

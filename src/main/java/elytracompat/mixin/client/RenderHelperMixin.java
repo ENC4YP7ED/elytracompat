@@ -23,8 +23,8 @@ import net.minecraft.world.item.Items;
  *
  * 2. Armored Elytra renders the wings from the stored *snapshot* elytra, so
  * anything Elytra Trims put on the combined item (trims, dyes, banners,
- * effects) would never show. Copy the outer stack's decorations — including
- * the chestplate-derived trim — onto the render stack.
+ * effects) would never show. Copy the outer stack's decorations - including
+ * the chestplate-derived trim - onto the render stack.
  */
 @Mixin(value = RenderHelper.class, remap = false)
 public abstract class RenderHelperMixin {

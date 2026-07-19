@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
  * The compat mod routes all "enderite chestplate + elytra" combining through
  * Armored Elytra's anvil, so the Enderite mod's own crafting-grid recipe (which
  * produces the merged {@code enderite_elytra} item) is disabled by making it
- * never match. It stays registered but inert, and — being a special recipe —
+ * never match. It stays registered but inert, and - being a special recipe -
  * is not shown in the recipe book. This also removes the recipe's ability to
  * destroy an armored elytra's stored chestplate.
  */

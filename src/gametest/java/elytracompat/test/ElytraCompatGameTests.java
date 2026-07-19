@@ -115,7 +115,7 @@ public class ElytraCompatGameTests {
 		AnvilMenu menu = anvil(ctx, player);
 
 		// enderite_elytra (the merged chestplate+wings item) is chest armor AND a
-		// glider — fusing it onto another elytra must not produce a result
+		// glider - fusing it onto another elytra must not produce a result
 		menu.getSlot(0).set(new ItemStack(Items.ELYTRA));
 		menu.getSlot(1).set(new ItemStack(EnderiteMod.ENDERITE_ELYTRA.get()));
 
@@ -156,7 +156,7 @@ public class ElytraCompatGameTests {
 		CraftingInput plainInput = CraftingInput.of(1, 2,
 				List.of(new ItemStack(Items.ELYTRA), new ItemStack(EnderiteMod.ENDERITE_CHESTPLATE.get())));
 		assertTrue(ctx, !recipe.matches(plainInput, ctx.getLevel()),
-				"Enderite elytra crafting recipe still matches (should be disabled — combine via anvil only)");
+				"Enderite elytra crafting recipe still matches (should be disabled - combine via anvil only)");
 
 		ItemStack armored = ArmoredElytra.createArmoredElytra(
 				new ItemStack(Items.ELYTRA), new ItemStack(Items.NETHERITE_CHESTPLATE),

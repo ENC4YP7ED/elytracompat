@@ -2,9 +2,9 @@
 	"schemaVersion": 1,
 	"id": "elytracompat",
 	"version": "${version}",
-	"name": "Elytra Compat: Armored × Trims × Enderite",
+	"name": "Elytra Compat: Armored + Trims + Enderite",
 	"description": "Compatibility bridge making Armored Elytra, Elytra Trims and the Enderite Mod work with each other: armor enderite elytras, real trim rendering on combined elytras, decoration preservation on split, no more item loss in the enderite elytra recipe.",
-	"authors": ["Jonas"],
+	"authors": ["ENC4YP7ED"],
 	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {

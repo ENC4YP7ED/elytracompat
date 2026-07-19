@@ -60,7 +60,7 @@ public abstract class AnvilMenuCompatMixin extends ItemCombinerMenu {
 	}
 
 	/**
-	 * AE combines elytra + anything in #minecraft:chest_armor — including the
+	 * AE combines elytra + anything in #minecraft:chest_armor - including the
 	 * enderite elytra, which is a full glider of its own. Un-set that result;
 	 * merging wings into wings is the enderite crafting recipe's job.
 	 */

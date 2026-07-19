@@ -13,5 +13,5 @@ are **not** committed. Drop these files in here before building:
 | `architectury-21.0.4.jar` | https://modrinth.com/mod/architectury-api (Fabric) |
 | `cloth-config-26.2.155.jar` | https://modrinth.com/mod/cloth-config (Fabric) |
 
-The exact filenames matter — `build.gradle` references them by
+The exact filenames matter - `build.gradle` references them by
 `name:version` (e.g. `":enderitemod:1.9.0"`).

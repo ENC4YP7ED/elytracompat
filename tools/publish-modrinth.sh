@@ -23,7 +23,7 @@ import json, sys, pathlib
 body = pathlib.Path("$DIR/docs/modrinth-description.md").read_text()
 print(json.dumps({
   "slug": "elytracompat",
-  "title": "Elytra Compat (Armored Elytra × Elytra Trims × Enderite)",
+  "title": "Elytra Compat (Armored Elytra + Elytra Trims + Enderite)",
   "description": sys.argv[1],
   "body": body,
   "categories": ["utility", "equipment"],

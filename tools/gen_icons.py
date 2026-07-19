@@ -183,7 +183,7 @@ def build_trim_tree(model_name_for, plain_model):
     return node
 
 # ----------------------------------------------------------------------------
-# 3. models — vanilla-elytra base (A + B)
+# 3. models - vanilla-elytra base (A + B)
 # ----------------------------------------------------------------------------
 
 ELYTRA0 = "armored_elytra:item/elytra"
@@ -194,13 +194,13 @@ for mat in MATERIALS:
     write_model("elytra_enderite_chestplate_%s_trim" % mat[1],
                 build_model(ELYTRA0, "enderite_chestplate", mat))
 
-# B: vanilla chestplates, enderite trim only (AE already ships vanilla×vanilla)
+# B: vanilla chestplates, enderite trim only (AE already ships vanilla+vanilla)
 ENDERITE_MAT = MATERIALS[-1]
 for chest in VANILLA_CHESTS:
     write_model("elytra_%s_enderite_trim" % chest, build_model(ELYTRA0, chest, ENDERITE_MAT))
 
 # ----------------------------------------------------------------------------
-# 4. models — enderite-elytra base (C)
+# 4. models - enderite-elytra base (C)
 # ----------------------------------------------------------------------------
 
 ENELYTRA0 = "elytracompat:item/enderite_elytra_base"
@@ -264,7 +264,7 @@ with open(os.path.join(RES, "assets/minecraft/items/elytra.json"), "w") as f:
     json.dump(elytra_def, f, indent=2)
 
 # ----------------------------------------------------------------------------
-# 6. enderite_elytra_seperated.json override (C) — wrap, delegate to original
+# 6. enderite_elytra_seperated.json override (C) - wrap, delegate to original
 # ----------------------------------------------------------------------------
 import zipfile
 

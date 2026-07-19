@@ -25,12 +25,12 @@ SOFTWARE.
 This is a compatibility add-on and interoperates with three separate mods.
 It does not bundle their code. Small derived assets and attribution:
 
-- Armored Elytra (https://github.com/DorkixAzIgazi/armored-elytra) — MIT.
+- Armored Elytra (https://github.com/DorkixAzIgazi/armored-elytra) - MIT.
   This mod extends Armored Elytra's icon system and reuses its trim template
   at runtime; derived icon models are used under the MIT License.
-- Enderite Mod (https://github.com/Nic4Las/Minecraft-Enderite-Mod) — MIT.
+- Enderite Mod (https://github.com/Nic4Las/Minecraft-Enderite-Mod) - MIT.
   Icon models/textures derived from the enderite elytra and chestplate are
   used under the MIT License.
-- Elytra Trims (https://codeberg.org/KikuGie/elytra-trims) — LGPL-3.0.
+- Elytra Trims (https://codeberg.org/KikuGie/elytra-trims) - LGPL-3.0.
   Used as an optional runtime dependency only; no Elytra Trims code or assets
   are redistributed.

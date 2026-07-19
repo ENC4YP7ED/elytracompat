@@ -35,7 +35,7 @@ dependencies {
 
 	// The three mods we bridge (local jars in libs/, via the flatDir repo).
 	// MC 26.2 ships unobfuscated, so Loom runs non-obfuscated and no remapping
-	// is needed — the mod jars are already in real (Mojang) names, same as us.
+	// is needed - the mod jars are already in real (Mojang) names, same as us.
 	implementation ":armored-elytra:1.14.1"
 	implementation ":elytratrims:4.9.0"
 	implementation ":enderitemod:1.9.0"

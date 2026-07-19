@@ -26,7 +26,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
  *    the normal item position, so the chestplate sits just above the elytra.
  *
  * Everything is read live from the {@link ResourceManager}, so it is fully
- * resource-pack aware — including the vanilla trim item template and palettes
+ * resource-pack aware - including the vanilla trim item template and palettes
  * used to recolour the trim overlays.
  */
 public final class CompatTextureGen {
