@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "elytracompat:item/enderite_elytra_base",
+    "layer1": "armored_elytra:item/netherite_chestplate",
+    "layer2": "armored_elytra:item/chestplate_trim_netherite_darker"
+  }
+}

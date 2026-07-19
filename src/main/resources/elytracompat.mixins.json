@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "elytracompat.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"AnvilMenuCompatMixin",
+		"ArmoredElytraMixin",
+		"EnderiteElytraSpecialRecipeMixin",
+		"GrindstoneMenuCompatMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

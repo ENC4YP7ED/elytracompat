@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "elytracompat.mixin.client",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"MultiPackResourceManagerMixin",
+		"RenderHelperMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

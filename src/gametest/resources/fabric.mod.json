@@ -1,0 +1,17 @@
+{
+	"schemaVersion": 1,
+	"id": "elytracompat-test",
+	"version": "1.0.0",
+	"name": "Elytra Compat Game Tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": ["elytracompat.test.ElytraCompatGameTests"],
+		"fabric-client-gametest": [
+			"elytracompat.test.ElytraCompatClientTest",
+			"elytracompat.test.ElytraCompatRuntimePackTest"
+		]
+	},
+	"depends": {
+		"elytracompat": "*"
+	}
+}
