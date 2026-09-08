@@ -8,7 +8,7 @@ on the modded/combined ones:
 - [Elytra Trims](https://codeberg.org/KikuGie/elytra-trims) - trims, dyes, banners and effects rendered on wings
 - [Enderite Mod](https://github.com/Nic4Las/Minecraft-Enderite-Mod) - enderite chestplate + two elytra items
 
-Install all three mods, this compat mod, Fabric API and Fabric Language Kotlin.
+Install Armored Elytra, Enderite Mod, this compat mod and their required runtime dependencies. Elytra Trims is recommended, not a hard dependency: install Elytra Trims 4.8.2 or newer (plus Fabric Language Kotlin) when you want the trim/dye/banner/effect integration. Elytra Compat itself supports Fabric Loader 0.19.3 or newer; a different installed mod may still require a newer Loader.
 
 ## What was broken, and what this fixes
 
