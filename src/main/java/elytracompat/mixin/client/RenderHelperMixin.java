@@ -29,11 +29,12 @@ import net.minecraft.world.item.Items;
 @Mixin(value = RenderHelper.class, remap = false)
 public abstract class RenderHelperMixin {
 
-	// See ArmoredElytraMixin: is(Item) erases to is(Object) in 26.2 bytecode.
-	// Both RenderHelper methods gate on ItemStack.is(Items.ELYTRA); the bundle
-	// checks use ItemStackTemplate.is(...), a different owner, so they are safe.
+	// Armored Elytra 1.14.x performs its own ItemStack.is(Items.ELYTRA) checks
+	// in RenderHelper. 1.15+ delegates to ArmoredElytra.isArmoredElytra instead,
+	// which ArmoredElytraMixin already widens. Keep this injection optional so
+	// both code shapes are supported by the same compat jar.
 	@WrapOperation(method = { "modifyStackWithArmor", "modifyStackWithElytra" }, at = @At(value = "INVOKE",
-			target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z", remap = false))
+			target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z", remap = false), require = 0)
 	private static boolean elytracompat$widenElytraCheck(ItemStack stack, Object arg, Operation<Boolean> original) {
 		return original.call(stack, arg)
 				|| (arg == Items.ELYTRA && stack.is(ElytraCompat.ARMORABLE_GLIDERS));

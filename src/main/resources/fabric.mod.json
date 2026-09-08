@@ -18,10 +18,11 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.19.0",
-		"minecraft": ">=26.2 <26.3",
-		"armored-elytra": "*",
-		"elytratrims": "*",
-		"enderitemod": "*"
+		"fabricloader": ">=${loader_version_min}",
+		"minecraft": ">=${minecraft_version_min} <${minecraft_version_max}",
+		"java": ">=${java_version_min}",
+		"armored-elytra": ">=${armored_elytra_version_min}",
+		"elytratrims": ">=${elytratrims_version_min}",
+		"enderitemod": ">=${enderitemod_version_min}"
 	}
 }

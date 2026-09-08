@@ -34,28 +34,39 @@ dependencies {
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	// The three mods we bridge (local jars in libs/, via the flatDir repo).
+	// These are compile/test baselines only. Runtime compatibility is declared
+	// separately as >= version floors in fabric.mod.json.
 	// MC 26.2 ships unobfuscated, so Loom runs non-obfuscated and no remapping
 	// is needed - the mod jars are already in real (Mojang) names, same as us.
-	implementation ":armored-elytra:1.14.1"
-	implementation ":elytratrims:4.9.0"
-	implementation ":enderitemod:1.9.0"
+	implementation ":armored-elytra:${project.armored_elytra_version}"
+	implementation ":elytratrims:${project.elytratrims_version}"
+	implementation ":enderitemod:${project.enderitemod_version}"
 
-	// Runtime-only deps of the above, so run configs can launch
-	runtimeOnly ":fabric-language-kotlin:1.13.13"
-	runtimeOnly ":architectury:21.0.4"
-	runtimeOnly ":cloth-config:26.2.155"
+	// Runtime-only deps of the above, so run configs can launch.
+	runtimeOnly ":fabric-language-kotlin:${project.fabric_language_kotlin_version}"
+	runtimeOnly ":architectury:${project.architectury_version}"
+	runtimeOnly ":cloth-config:${project.cloth_config_version}"
 
 	// Architectury types (RegistrySupplier) leak through Enderite's API surface,
 	// so the gametest source set needs it on its compile classpath.
-	gametestCompileOnly ":architectury:21.0.4"
+	gametestCompileOnly ":architectury:${project.architectury_version}"
 }
 
 processResources {
-	def version = project.version
-	inputs.property "version", version
+	def runtimeVersions = [
+		version: project.version,
+		loader_version_min: project.loader_version_min,
+		minecraft_version_min: project.minecraft_version_min,
+		minecraft_version_max: project.minecraft_version_max,
+		java_version_min: project.java_version_min,
+		armored_elytra_version_min: project.armored_elytra_version_min,
+		elytratrims_version_min: project.elytratrims_version_min,
+		enderitemod_version_min: project.enderitemod_version_min
+	]
+	inputs.properties runtimeVersions
 
 	filesMatching("fabric.mod.json") {
-		expand "version": version
+		expand runtimeVersions
 	}
 }
 
