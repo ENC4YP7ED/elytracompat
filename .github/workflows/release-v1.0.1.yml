@@ -1,0 +1,132 @@
+name: Release v1.0.1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release-v1.0.1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Prepare Gradle
+        run: chmod +x ./gradlew
+
+      - name: Build Armored Elytra 1.14.1 baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/armored-elytra
+          git clone https://github.com/DorkixAzIgazi/armored-elytra.git /tmp/armored-elytra
+          cd /tmp/armored-elytra
+          git checkout 50fd568234650771c74e97fa1ee1be29cb6a05cc
+          chmod +x ./gradlew
+          ./gradlew clean build -x test --no-daemon
+          mkdir -p "$GITHUB_WORKSPACE/libs"
+          JAR="$(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' ! -name '*-dev.jar' | head -n 1)"
+          test -n "$JAR"
+          cp "$JAR" "$GITHUB_WORKSPACE/libs/armored-elytra-1.14.1.jar"
+
+      - name: Download Modrinth build dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib, urllib.parse, urllib.request
+
+          out = pathlib.Path('libs')
+          out.mkdir(exist_ok=True)
+
+          deps = [
+              ('elytra-trims', '4.9.0', 'elytratrims-4.9.0.jar'),
+              ('enderite-mod', '1.9.0', 'enderitemod-1.9.0.jar'),
+              ('fabric-language-kotlin', '1.13.13', 'fabric-language-kotlin-1.13.13.jar'),
+              ('architectury-api', '21.0.4', 'architectury-21.0.4.jar'),
+              ('cloth-config', '26.2.155', 'cloth-config-26.2.155.jar'),
+          ]
+
+          headers = {'User-Agent': 'ENC4YP7ED/elytracompat-release-workflow'}
+
+          def get_json(url):
+              req = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req) as r:
+                  return json.load(r)
+
+          for project, wanted, dest in deps:
+              params = urllib.parse.urlencode({
+                  'loaders': json.dumps(['fabric']),
+                  'game_versions': json.dumps(['26.2']),
+              })
+              versions = get_json(f'https://api.modrinth.com/v2/project/{project}/version?{params}')
+
+              def score(v):
+                  n = v.get('version_number', '')
+                  if n == wanted:
+                      return 0
+                  if n.startswith(wanted):
+                      return 1
+                  if wanted in n:
+                      return 2
+                  return 99
+
+              candidates = sorted((v for v in versions if score(v) < 99), key=score)
+              if not candidates:
+                  raise SystemExit(f'No Fabric 26.2 Modrinth version found for {project} matching {wanted}')
+
+              version = candidates[0]
+              files = version.get('files', [])
+              primary = next((f for f in files if f.get('primary')), None)
+              jar = primary or next((f for f in files if f.get('filename', '').endswith('.jar')), None)
+              if not jar:
+                  raise SystemExit(f'No jar file found for {project} {version.get("version_number")}')
+
+              print(f'{project}: {version.get("version_number")} -> {dest}')
+              req = urllib.request.Request(jar['url'], headers=headers)
+              with urllib.request.urlopen(req) as r, open(out / dest, 'wb') as f:
+                  f.write(r.read())
+          PY
+          ls -lh libs
+
+      - name: Build Elytra Compat
+        run: ./gradlew clean build --no-daemon
+
+      - name: Verify release jar
+        shell: bash
+        run: |
+          set -euo pipefail
+          JAR="$(find build/libs -maxdepth 1 -type f -name 'elytracompat-1.0.1.jar' | head -n 1)"
+          test -f "$JAR"
+          echo "RELEASE_JAR=$JAR" >> "$GITHUB_ENV"
+          sha256sum "$JAR"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.1
+          name: Elytra Compat v1.0.1
+          target_commitish: main
+          make_latest: true
+          body: |
+            Compatibility/dependency-floor release for Minecraft 26.2.
+
+            Changes:
+            - Requires Fabric Loader 0.19.5 or newer.
+            - Uses minimum compatible dependency ranges instead of exact runtime pins.
+            - Armored Elytra >=1.14.1.
+            - Elytra Trims >=4.8.2.
+            - Enderite Mod >=1.9.0.
+            - Supports the Armored Elytra 1.14.x and 1.15+ RenderHelper code shapes.
+          files: ${{ env.RELEASE_JAR }}
